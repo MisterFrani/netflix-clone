@@ -1,6 +1,6 @@
 import useSwr, { KeyedMutator } from "swr";
 
-import fetcher from "@/pages/fetcher";
+import fetcher from "@/lib/fetcher";
 import { User } from "@/shared/types/user";
 import { NextError } from "@/shared/types/common";
 
