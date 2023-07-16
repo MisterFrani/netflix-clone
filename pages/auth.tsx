@@ -1,6 +1,6 @@
 import axios from "axios";
 import Input from "@/components/input";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { signIn } from "next-auth/react";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
@@ -12,6 +12,16 @@ const Auth = () => {
 
   const [variant, setVariant] = useState("login");
 
+  useEffect(() => {
+    console.log(process.env.NEXTAUTH_JWT_SECRET);
+    console.log(process.env.NEXTAUTH_SECRET);
+    console.log(process.env.GITHUB_ID);
+    console.log(process.env.GITHUB_SECRET);
+    console.log(process.env.GOOGLE_CLIENT_ID);
+    console.log(process.env.GOOGLE_CLIENT_SECRET);
+    console.log(process.env.DATABASE_URL);
+  }, []);
+
   const toggleVariant = useCallback(() => {
     setVariant((currentVariant) =>
       currentVariant === "login" ? "register" : "login"
@@ -22,7 +32,7 @@ const Auth = () => {
       await signIn("credentials", {
         email,
         password,
-        callbackUrl: "/profiles",
+        callbackUrl: "/",
       });
     } catch (error) {
       console.log(error);
@@ -49,7 +59,6 @@ const Auth = () => {
         <nav className="px-12 py-5">
           <img src="/images/logo.png" alt="logo" className="h-12" />
         </nav>
-
         <div className="flex justify-center">
           <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
             <h2 className="text-white text-4xl mb-8 font-semibold">
@@ -89,7 +98,7 @@ const Auth = () => {
 
             <div className="flex flex-row items-center gap-4 mt-8 justify-center  ">
               <div
-                onClick={() => signIn("google", { callbackUrl: "/profiles" })}
+                onClick={() => signIn("google", { callbackUrl: "/" })}
                 className="
               w-10
               h-10
@@ -107,7 +116,7 @@ const Auth = () => {
               </div>
 
               <div
-                onClick={() => signIn("github", { callbackUrl: "/profiles" })}
+                onClick={() => signIn("github", { callbackUrl: "/" })}
                 className="
               w-10
               h-10
