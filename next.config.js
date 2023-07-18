@@ -9,7 +9,9 @@ const nextConfig = {
     GITHUB_SECRET: process.env.GITHUB_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
-
+  },
+  serverRuntimeConfig: {
+    apiTimeout: 120000, // 2 minutes
   },
 };
 
